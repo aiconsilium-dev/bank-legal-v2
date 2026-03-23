@@ -371,10 +371,10 @@
   /* ══════════════════════════════════════════
      와이어프레임 섹션 전용 CSS
   ══════════════════════════════════════════ */
-  .wf { border: 1px solid #e0e0e0; border-radius: 8px; background: #f5f6f8; padding: 0; margin: 28px 0; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,.07); }
+  .wf { margin-bottom:24px; border: 1px solid #e0e0e0; border-radius: 8px; background: #f5f6f8; padding: 0; margin: 28px 0; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,.07); }
   .wf-label-bar { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; color: #fff; background: var(--primary); padding: 8px 16px; text-transform: uppercase; display: flex; align-items: center; gap: 8px; }
   .wf-label-bar .wf-screen-num { opacity: 0.55; }
-  .wf-screen { background: #fff; border-radius: 0 0 6px 6px; }
+  .wf-screen { overflow:hidden; background: #fff; border-radius: 0 0 6px 6px; }
 
   /* 앱 상단 바 */
   .wf-topbar { background: var(--primary); color: #fff; padding: 12px 18px; display: flex; justify-content: space-between; align-items: center; }
@@ -541,8 +541,7 @@
 
   /* 인쇄 */
   @page { size: A4; margin: 18mm 17mm 18mm 17mm; }
-  @media print {
-    * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+  
     body { font-size: 12.5px; line-height: 1.75; }
     a { color: inherit !important; text-decoration: none !important; }
     .body-wrap { padding: 0; max-width: 100%; }
@@ -559,7 +558,7 @@
     .note, .reason-card, .func-card, .case-card, .rev-card, .vision-card, .rm-item, .diff-card, .price-card, .module-card { page-break-inside: avoid; break-inside: avoid; }
     .func-grid, .rev-grid, .reason-grid, .vision-grid, .diff-grid, .price-grid, .module-grid { grid-template-columns: 1fr !important; }
     .cover-sigline { grid-template-columns: repeat(3, 1fr) !important; }
-    .wf { page-break-inside: avoid; break-inside: avoid; }
+    .wf { margin-bottom:24px; page-break-inside: avoid; break-inside: avoid; }
     .cover-conf { display: none; }
   }
   @media (max-width: 640px) {
@@ -575,6 +574,68 @@
     .flow-row { flex-direction: column; }
     .flow-step:not(:last-child)::after { content: '↓'; right: auto; left: 50%; top: auto; bottom: -14px; transform: translateX(-50%); }
   }
+
+  @media print {
+    @page { margin: 16mm 18mm; size: A4; }
+
+    /* 커버·목차 페이지 분리 */
+    .cover { page-break-after: always; }
+    .toc-page { page-break-after: always; }
+
+    /* 섹션 시작 시 새 페이지 */
+    section { page-break-before: always; }
+    section:first-of-type { page-break-before: avoid; }
+
+    /* 섹션 헤더 뒤에서 끊기지 않기 */
+    .sec-head, .sec-head + p, .sec-head + h3 {
+      page-break-after: avoid !important;
+      break-after: avoid !important;
+    }
+    h3, h4 {
+      page-break-after: avoid !important;
+      break-after: avoid !important;
+    }
+
+    /* 와이어프레임·다이어그램 절대 잘리지 않게 */
+    .wf, .wf-screen { overflow:hidden;
+      page-break-inside: avoid !important;
+      break-inside: avoid !important;
+    }
+
+    /* 표 잘림 방지 */
+    table {
+      page-break-inside: avoid !important;
+      break-inside: avoid !important;
+    }
+
+    /* 카드·노트·박스 잘림 방지 */
+    .note, .reason-card, .rev-card, .case-card {
+      page-break-inside: avoid !important;
+      break-inside: avoid !important;
+    }
+
+    /* 표 헤더 반복 */
+    thead { display: table-header-group; }
+
+    /* 그리드 → 인쇄 시 1열 */
+    .reason-grid, .rev-grid {
+      grid-template-columns: 1fr !important;
+    }
+
+    /* 와이어프레임 카드 그리드도 인쇄 시 축소 */
+    .wf-card-grid {
+      grid-template-columns: repeat(2, 1fr) !important;
+    }
+
+    /* 폰트 축소 */
+    body { font-size: 13px !important; }
+    table { font-size: 12px !important; }
+    td, th { padding: 6px 8px !important; }
+
+    /* 불필요 요소 숨김 */
+    .cover-conf { display: none; }
+  }
+
 </style>
 </head>
 <body>
