@@ -17,6 +17,52 @@
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: 'Apple SD Gothic Neo','Noto Sans KR',sans-serif; background:#fff; color:var(--text); line-height:1.8; font-size:14.5px; }
 
+  
+  /* ── 와이어프레임 ── */
+  .wf { border:1px solid var(--border); border-radius:8px; background:#fafbfc; padding:20px; margin:20px 0; font-size:13px; }
+  .wf-title { font-size:11px; font-weight:700; letter-spacing:1.5px; color:var(--muted); text-transform:uppercase; margin-bottom:14px; }
+  .wf-screen { border:2px solid #c8cdd3; border-radius:12px; background:#fff; overflow:hidden; margin-bottom:16px; }
+  .wf-topbar { background:var(--primary); color:#fff; padding:10px 16px; font-size:12px; font-weight:600; display:flex; justify-content:space-between; align-items:center; }
+  .wf-topbar .wf-logo { font-size:13px; }
+  .wf-topbar .wf-user { font-size:11px; color:rgba(255,255,255,.6); }
+  .wf-body { padding:16px; }
+  .wf-section { margin-bottom:14px; }
+  .wf-label { font-size:10px; font-weight:700; color:var(--muted); letter-spacing:1px; text-transform:uppercase; margin-bottom:6px; }
+  .wf-card-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:10px; }
+  .wf-card { border:1.5px solid #d0d5db; border-radius:8px; padding:12px; background:#fff; cursor:pointer; }
+  .wf-card:hover { border-color:var(--primary); }
+  .wf-card .wf-card-icon { font-size:20px; margin-bottom:4px; }
+  .wf-card .wf-card-name { font-size:12px; font-weight:700; color:var(--text); }
+  .wf-card .wf-card-desc { font-size:10px; color:var(--muted); margin-top:2px; }
+  .wf-card .wf-card-badge { font-size:9px; background:#e8f5e9; color:#2e7d32; padding:1px 6px; border-radius:3px; display:inline-block; margin-top:4px; }
+  .wf-card .wf-card-badge.urgent { background:#fce4ec; color:#c62828; }
+  .wf-checklist { list-style:none; padding:0; }
+  .wf-checklist li { display:flex; align-items:center; gap:8px; padding:6px 0; border-bottom:1px solid #f0f0f0; font-size:12px; }
+  .wf-checklist li:last-child { border-bottom:none; }
+  .wf-check { width:16px; height:16px; border:1.5px solid #adb5bd; border-radius:3px; flex-shrink:0; }
+  .wf-check.done { background:var(--primary); border-color:var(--primary); position:relative; }
+  .wf-check.done::after { content:"✓"; color:#fff; font-size:10px; position:absolute; top:-1px; left:2px; }
+  .wf-input { border:1px solid #ced4da; border-radius:6px; padding:8px 10px; font-size:12px; width:100%; margin-bottom:8px; background:#f8f9fa; color:#495057; }
+  .wf-input-label { font-size:10px; color:var(--muted); margin-bottom:3px; font-weight:600; }
+  .wf-btn { display:inline-block; padding:8px 18px; border-radius:6px; font-size:12px; font-weight:700; cursor:pointer; border:none; }
+  .wf-btn-primary { background:var(--primary); color:#fff; }
+  .wf-btn-outline { background:#fff; color:var(--primary); border:1.5px solid var(--primary); }
+  .wf-btn-danger { background:#c62828; color:#fff; }
+  .wf-result { background:#e8f5e9; border:1px solid #a5d6a7; border-radius:8px; padding:12px 14px; margin-top:10px; }
+  .wf-result-title { font-size:11px; font-weight:700; color:#2e7d32; margin-bottom:6px; }
+  .wf-result-val { font-size:18px; font-weight:800; color:var(--text); }
+  .wf-result-sub { font-size:10px; color:var(--muted); margin-top:4px; }
+  .wf-alert { background:#fff3e0; border:1px solid #ffcc80; border-radius:8px; padding:10px 12px; font-size:11px; color:#e65100; margin-top:8px; }
+  .wf-doc-preview { background:#f5f5f5; border:1px dashed #bdbdbd; border-radius:6px; padding:16px; text-align:center; color:var(--muted); font-size:11px; margin-top:10px; min-height:80px; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:4px; }
+  .wf-doc-preview .wf-doc-icon { font-size:24px; }
+  .wf-flow { display:flex; align-items:center; gap:0; margin:12px 0; flex-wrap:wrap; }
+  .wf-flow-step { background:var(--primary); color:#fff; padding:6px 14px; border-radius:4px; font-size:10px; font-weight:600; text-align:center; }
+  .wf-flow-step.active { background:#1565c0; }
+  .wf-flow-arrow { color:#adb5bd; font-size:14px; padding:0 4px; }
+  .wf-tab-row { display:flex; border-bottom:2px solid var(--border); margin-bottom:12px; }
+  .wf-tab { padding:6px 14px; font-size:11px; font-weight:600; color:var(--muted); cursor:pointer; }
+  .wf-tab.active { color:var(--primary); border-bottom:2px solid var(--primary); margin-bottom:-2px; }
+
   /* ── 커버 ── */
   .cover {
     background: var(--primary);
@@ -350,6 +396,13 @@
 
   /* @page & print */
   @page { size: A4; margin: 18mm 17mm 18mm 17mm; }
+  
+  section { page-break-inside: avoid; break-inside: avoid; }
+  .sec-head { page-break-after: avoid; break-after: avoid; }
+  h3 { page-break-after: avoid; break-after: avoid; }
+  table { page-break-inside: avoid; break-inside: avoid; }
+  .wf { page-break-inside: avoid; break-inside: avoid; }
+  .wf-screen { page-break-inside: avoid; break-inside: avoid; }
   @media print {
     * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
     body { font-size: 12.5px; line-height: 1.75; }
@@ -567,7 +620,39 @@
       <div class="note-label">핵심 가치</div>
       행원이 법률 전문가가 될 필요 없다. 케이스를 선택하면 시스템이 안내한다. 판단이 필요한 순간에만 변호사를 연결한다.
     </div>
-  </section>
+  
+  <div class="wf">
+    <div class="wf-title">와이어프레임 — 기관 전용 레퍼런스 라이브러리</div>
+    <div class="wf-screen">
+      <div class="wf-topbar"><span class="wf-logo">뱅크법률집사</span><span class="wf-user">○○저축은행 · 서류 라이브러리</span></div>
+      <div class="wf-body">
+        <div class="wf-tab-row">
+          <div class="wf-tab active">전체 (47건)</div>
+          <div class="wf-tab">경매 (12건)</div>
+          <div class="wf-tab">내용증명 (8건)</div>
+          <div class="wf-tab">지급명령 (6건)</div>
+          <div class="wf-tab">민원 답변 (5건)</div>
+        </div>
+        <div style="font-size:12px">
+          <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #f0f0f0;align-items:center">
+            <div><strong>임의경매 신청서</strong> — 홍길동 건<br><span style="font-size:10px;color:var(--muted)">2026.03.15 · 인천지방법원 · 청구 1.23억</span></div>
+            <span class="wf-btn wf-btn-outline" style="padding:4px 10px;font-size:10px">재사용</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #f0f0f0;align-items:center">
+            <div><strong>내용증명 (시효 중단)</strong> — 김철수 건<br><span style="font-size:10px;color:var(--muted)">2026.03.10 · 변호사 검토 완료</span></div>
+            <span class="wf-btn wf-btn-outline" style="padding:4px 10px;font-size:10px">재사용</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #f0f0f0;align-items:center">
+            <div><strong>금감원 답변서</strong> — 금리인하 거부 민원<br><span style="font-size:10px;color:var(--muted)">2026.03.05 · 변호사 검토 완료 · 금감원 수용</span></div>
+            <span class="wf-btn wf-btn-outline" style="padding:4px 10px;font-size:10px">재사용</span>
+          </div>
+        </div>
+        <div style="margin-top:12px;text-align:center;font-size:10px;color:var(--muted)">이전 서류를 템플릿으로 재사용하면 AI 초안 품질이 더 높아집니다.</div>
+      </div>
+    </div>
+  </div>
+
+</section>
 
   <!-- ── 03 ── -->
   <section id="s03">
@@ -661,6 +746,156 @@
         </tr>
       </tbody>
     </table>
+  <div class="wf">
+    <div class="wf-title">와이어프레임 — AI 초안 생성 결과 및 다운로드</div>
+    <div class="wf-screen">
+      <div class="wf-topbar"><span class="wf-logo">뱅크법률집사</span><span class="wf-user">AI 초안 결과</span></div>
+      <div class="wf-body">
+        <div class="wf-flow">
+          <div class="wf-flow-step" style="opacity:.5">케이스 선택</div>
+          <div class="wf-flow-arrow">→</div>
+          <div class="wf-flow-step" style="opacity:.5">서류 확인</div>
+          <div class="wf-flow-arrow">→</div>
+          <div class="wf-flow-step" style="opacity:.5">정보 입력</div>
+          <div class="wf-flow-arrow">→</div>
+          <div class="wf-flow-step active">AI 초안</div>
+          <div class="wf-flow-arrow">→</div>
+          <div class="wf-flow-step" style="opacity:.5">다운로드</div>
+        </div>
+        <div class="wf-result">
+          <div class="wf-result-title">✓ 임의경매 신청서 초안이 생성되었습니다</div>
+          <div class="wf-result-val">청구금액: 123,456,789원</div>
+          <div class="wf-result-sub">원금 100,000,000원 + 이자 18,452,055원 + 지연손해금 5,004,734원</div>
+        </div>
+        <div class="wf-doc-preview">
+          <div class="wf-doc-icon">📄</div>
+          임의경매 신청서 미리보기<br>
+          <span style="font-size:10px;color:#999">클릭하여 편집 가능</span>
+        </div>
+        <div class="wf-alert">⚠ 자동 생성 초안입니다. 제출 전 반드시 내용을 확인하세요. 확인이 어려우면 "변호사 검토"를 요청하세요.</div>
+        <div style="margin-top:14px;display:flex;gap:8px">
+          <span class="wf-btn wf-btn-primary">📥 PDF 다운로드</span>
+          <span class="wf-btn wf-btn-outline">✏️ 직접 수정</span>
+          <span class="wf-btn wf-btn-outline">👨‍⚖️ 변호사 검토 요청</span>
+        </div>
+        <div style="margin-top:12px">
+          <div class="wf-label">함께 생성된 서류</div>
+          <ul class="wf-checklist">
+            <li><div class="wf-check done"></div><strong>채권계산서</strong> — 자동 생성 완료</li>
+            <li><div class="wf-check done"></div><strong>부동산 목록</strong> — 자동 추출 완료</li>
+            <li><div class="wf-check done"></div><strong>인지대·송달료 계산</strong> — 인지 432,000원 / 송달료 83,200원</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="wf">
+    <div class="wf-title">와이어프레임 — 서류 체크리스트 및 정보 입력</div>
+    <div class="wf-screen">
+      <div class="wf-topbar"><span class="wf-logo">뱅크법률집사</span><span class="wf-user">담보 부동산 임의경매 신청</span></div>
+      <div class="wf-body">
+        <div class="wf-flow">
+          <div class="wf-flow-step" style="opacity:.5">케이스 선택</div>
+          <div class="wf-flow-arrow">→</div>
+          <div class="wf-flow-step active">서류 확인</div>
+          <div class="wf-flow-arrow">→</div>
+          <div class="wf-flow-step" style="opacity:.5">정보 입력</div>
+          <div class="wf-flow-arrow">→</div>
+          <div class="wf-flow-step" style="opacity:.5">AI 초안</div>
+          <div class="wf-flow-arrow">→</div>
+          <div class="wf-flow-step" style="opacity:.5">다운로드</div>
+        </div>
+        <div class="wf-label">필요 서류 체크리스트 (7건)</div>
+        <ul class="wf-checklist">
+          <li><div class="wf-check done"></div><strong>임의경매 신청서</strong> — AI 초안 자동 생성</li>
+          <li><div class="wf-check done"></div><strong>등기부등본</strong> — 인터넷등기소 발급 안내</li>
+          <li><div class="wf-check done"></div><strong>채권계산서</strong> — 자동 계산</li>
+          <li><div class="wf-check done"></div><strong>송달료 납부서</strong> — 금액 자동 산정</li>
+          <li><div class="wf-check done"></div><strong>인지대 납부서</strong> — 금액 자동 산정</li>
+          <li><div class="wf-check"></div><strong>부동산 목록</strong> — 등기부에서 자동 추출</li>
+          <li><div class="wf-check"></div><strong>위임장</strong> — 변호사 대리 시에만 필요</li>
+        </ul>
+      </div>
+    </div>
+    <div class="wf-screen" style="margin-top:12px">
+      <div class="wf-topbar"><span class="wf-logo">뱅크법률집사</span><span class="wf-user">정보 입력</span></div>
+      <div class="wf-body">
+        <div class="wf-flow">
+          <div class="wf-flow-step" style="opacity:.5">케이스 선택</div>
+          <div class="wf-flow-arrow">→</div>
+          <div class="wf-flow-step" style="opacity:.5">서류 확인</div>
+          <div class="wf-flow-arrow">→</div>
+          <div class="wf-flow-step active">정보 입력</div>
+          <div class="wf-flow-arrow">→</div>
+          <div class="wf-flow-step" style="opacity:.5">AI 초안</div>
+          <div class="wf-flow-arrow">→</div>
+          <div class="wf-flow-step" style="opacity:.5">다운로드</div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+          <div><div class="wf-input-label">채무자명</div><div class="wf-input">홍길동</div></div>
+          <div><div class="wf-input-label">여신 계좌번호</div><div class="wf-input">123-456-789012</div></div>
+          <div><div class="wf-input-label">대출 원금</div><div class="wf-input">100,000,000원</div></div>
+          <div><div class="wf-input-label">연체 시작일</div><div class="wf-input">2025-12-15</div></div>
+          <div><div class="wf-input-label">약정 이자율</div><div class="wf-input">연 12.5%</div></div>
+          <div><div class="wf-input-label">지연 손해금율</div><div class="wf-input">연 15%</div></div>
+          <div><div class="wf-input-label">담보물 등기번호</div><div class="wf-input">1234-2025-001234</div></div>
+          <div><div class="wf-input-label">관할 법원</div><div class="wf-input">인천지방법원</div></div>
+        </div>
+        <div style="margin-top:12px;text-align:right">
+          <span class="wf-btn wf-btn-outline" style="margin-right:8px">임시 저장</span>
+          <span class="wf-btn wf-btn-primary">AI 초안 생성 →</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="wf">
+    <div class="wf-title">와이어프레임 — 케이스 선택 화면</div>
+    <div class="wf-screen">
+      <div class="wf-topbar"><span class="wf-logo">뱅크법률집사</span><span class="wf-user">○○저축은행 · 김행원</span></div>
+      <div class="wf-body">
+        <div class="wf-label">어떤 업무를 처리하시겠습니까?</div>
+        <div class="wf-card-grid">
+          <div class="wf-card" style="border-color:var(--primary);background:#f5f7fa">
+            <div class="wf-card-icon">⚖️</div>
+            <div class="wf-card-name">담보 부동산 임의경매 신청</div>
+            <div class="wf-card-desc">서류 7건 · 예상 소요 15분</div>
+            <div class="wf-card-badge">AI 초안 가능</div>
+          </div>
+          <div class="wf-card">
+            <div class="wf-card-icon">⏰</div>
+            <div class="wf-card-name">소멸시효 중단 — 내용증명</div>
+            <div class="wf-card-desc">서류 3건 · 예상 소요 10분</div>
+            <div class="wf-card-badge urgent">시효 만료 D-14</div>
+          </div>
+          <div class="wf-card">
+            <div class="wf-card-icon">📋</div>
+            <div class="wf-card-name">지급명령 신청</div>
+            <div class="wf-card-desc">서류 4건 · 예상 소요 10분</div>
+            <div class="wf-card-badge">AI 초안 가능</div>
+          </div>
+          <div class="wf-card">
+            <div class="wf-card-icon">🏛️</div>
+            <div class="wf-card-name">금감원 민원 답변서</div>
+            <div class="wf-card-desc">서류 3건 · 예상 소요 20분</div>
+            <div class="wf-card-badge urgent">기한 D-25</div>
+          </div>
+          <div class="wf-card">
+            <div class="wf-card-icon">🏠</div>
+            <div class="wf-card-name">근저당권 설정 등기</div>
+            <div class="wf-card-desc">서류 4건 · 예상 소요 10분</div>
+          </div>
+          <div class="wf-card">
+            <div class="wf-card-icon">💳</div>
+            <div class="wf-card-name">채권 압류 및 전부명령</div>
+            <div class="wf-card-desc">서류 3건 · 예상 소요 10분</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 
     <div class="note">
       <div class="note-label">서류 범위</div>
@@ -708,6 +943,49 @@
       <div class="note-label">시나리오 B 포인트</div>
       소멸시효 D-7 알림은 채권 관리 DB와 연동하여 자동 발송된다. 행원이 시효 만료를 몰라서 채권이 소멸되는 사고를 원천 차단한다. 내용증명은 자동 생성 → 배달증명 신청까지 플랫폼 내에서 완결된다.
     </div>
+  <div class="wf">
+    <div class="wf-title">와이어프레임 — 소멸시효 긴급 대응 화면</div>
+    <div class="wf-screen">
+      <div class="wf-topbar"><span class="wf-logo">뱅크법률집사</span><span class="wf-user" style="color:#ff8a80">⚠ 긴급 · 소멸시효 D-14</span></div>
+      <div class="wf-body">
+        <div style="background:#c62828;color:#fff;border-radius:8px;padding:12px 14px;margin-bottom:12px;font-size:12px;font-weight:700">
+          🚨 시효 만료일: 2026.04.07 · 잔여 14일 · 즉시 조치 필요
+        </div>
+        <div class="wf-section">
+          <div class="wf-label">시효 자동 계산 결과</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px">
+            <div style="background:#f5f5f5;border-radius:6px;padding:10px;text-align:center;font-size:11px"><div style="color:var(--muted)">마지막 변제일</div><div style="font-weight:700;font-size:14px;margin-top:4px">2021.04.07</div></div>
+            <div style="background:#f5f5f5;border-radius:6px;padding:10px;text-align:center;font-size:11px"><div style="color:var(--muted)">소멸시효</div><div style="font-weight:700;font-size:14px;margin-top:4px">5년 (상사)</div></div>
+            <div style="background:#fce4ec;border-radius:6px;padding:10px;text-align:center;font-size:11px"><div style="color:#c62828">시효 만료일</div><div style="font-weight:700;font-size:14px;margin-top:4px;color:#c62828">2026.04.07</div></div>
+          </div>
+        </div>
+        <div class="wf-section">
+          <div class="wf-label">중단 조치 선택</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px">
+            <div class="wf-card" style="border-color:var(--primary);background:#f5f7fa;text-align:center;padding:14px">
+              <div style="font-size:16px">📮</div>
+              <div style="font-size:11px;font-weight:700;margin-top:4px">내용증명 발송</div>
+              <div style="font-size:9px;color:var(--muted);margin-top:2px">가장 빠름 · 10분 · 6개월 유예</div>
+            </div>
+            <div class="wf-card" style="text-align:center;padding:14px">
+              <div style="font-size:16px">📋</div>
+              <div style="font-size:11px;font-weight:700;margin-top:4px">지급명령 신청</div>
+              <div style="font-size:9px;color:var(--muted);margin-top:2px">확정 중단 · 1~2주</div>
+            </div>
+            <div class="wf-card" style="text-align:center;padding:14px">
+              <div style="font-size:16px">⚖️</div>
+              <div style="font-size:11px;font-weight:700;margin-top:4px">소 제기</div>
+              <div style="font-size:9px;color:var(--muted);margin-top:2px">완전 중단 · 변호사 필요</div>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:8px;text-align:right">
+          <span class="wf-btn wf-btn-danger">🚨 내용증명 즉시 생성 →</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
 
     <h3>시나리오 C — 금감원 민원 답변</h3>
     <div class="flow-steps">
@@ -723,7 +1001,42 @@
       <div class="note-label">시나리오 C 포인트</div>
       금감원 민원 답변은 형식과 논리 구조가 중요하다. AI가 민원 유형별 최적화된 답변 구조를 제안하고, 변호사 황해가 최종 검토 후 제출하는 2단계 안전망을 갖춘다.
     </div>
-  </section>
+  
+  <div class="wf">
+    <div class="wf-title">와이어프레임 — 금감원 민원 답변서 작성</div>
+    <div class="wf-screen">
+      <div class="wf-topbar"><span class="wf-logo">뱅크법률집사</span><span class="wf-user">금감원 민원 답변서 · 기한 D-25</span></div>
+      <div class="wf-body">
+        <div class="wf-section">
+          <div class="wf-label">민원 유형 선택</div>
+          <div class="wf-tab-row">
+            <div class="wf-tab active">금리인하요구 거부</div>
+            <div class="wf-tab">불완전판매</div>
+            <div class="wf-tab">추심 불만</div>
+            <div class="wf-tab">핵심설명 미교부</div>
+          </div>
+        </div>
+        <div class="wf-section">
+          <div class="wf-input-label">민원 핵심 내용</div>
+          <div class="wf-input" style="min-height:48px">"신용등급 상승에도 금리인하요구를 거절했다. 금소법 위반이다."</div>
+          <div class="wf-input-label">기관 처리 경과</div>
+          <div class="wf-input" style="min-height:48px">"차주 신용등급 1단계 상승 확인. 그러나 시장금리 상승분(+1.2%p)이 신용등급 개선 효과를 초과하여 적정 금리 재산정 결과 인하 사유 없음으로 판단."</div>
+          <div class="wf-input-label">거절 사유 (체크)</div>
+          <div style="display:flex;gap:12px;font-size:11px;margin-top:4px">
+            <label><input type="checkbox" checked style="accent-color:var(--primary)"> 시장금리 상승</label>
+            <label><input type="checkbox" style="accent-color:var(--primary)"> 신용등급 개선 미미</label>
+            <label><input type="checkbox" style="accent-color:var(--primary)"> 내부 심사 기준 미충족</label>
+          </div>
+        </div>
+        <div style="margin-top:14px;display:flex;gap:8px">
+          <span class="wf-btn wf-btn-primary">📝 답변서 초안 생성</span>
+          <span class="wf-btn wf-btn-outline">👨‍⚖️ 변호사 직접 작성 요청</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
 
   <!-- ── 05 ── -->
   <section id="s05">
